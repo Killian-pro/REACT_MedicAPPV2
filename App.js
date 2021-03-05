@@ -1,0 +1,38 @@
+import 'react-native-gesture-handler';
+
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Home from './Screen/Home'
+import Add from './Screen/Add'
+import Calendar from './Screen/Calendar'
+
+const Stack = createStackNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home"
+        screenOptions={{
+          headerShown: false
+        }}>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+        />
+        <Stack.Screen
+          name="Add"
+          component={Add}
+        />
+         <Stack.Screen
+          name="Calendar"
+          component={Calendar}
+        />
+      </Stack.Navigator>
+      
+    </NavigationContainer>
+  );
+};
+
+export default App;
