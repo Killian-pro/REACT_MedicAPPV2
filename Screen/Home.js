@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react'
-import { View, Text } from 'react-native';
+import { View, Text,ScrollView } from 'react-native';
 import MedicamentCase from './MedicamentCase'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { openDatabase } from 'react-native-sqlite-storage';
@@ -51,13 +51,13 @@ function HomeScreen({ navigation }) {
     return (
         <>
             <View style={{ backgroundColor: '#74B72E', height: 100, width: '100%' }}></View>
-            <View style={{ margin: 30, width: "85%" }}>
+            <ScrollView style={{ margin: 30, width: "85%" }}>
                 <MedicamentCase navigation={navigation} />
                 <TouchableOpacity onPress={() => { navigation.navigate('Add') }} style={{ borderWidth: 2, borderRadius: 20, margin: 3, flexDirection: 'row', justifyContent: 'center', backgroundColor: '#00804F' }}>
                     <Icon name="add-outline" style={{ fontSize: 30, color: 'white',paddingRight:10 }} />
                     <Text style={{ fontSize: 20, color: 'white' }}>Ajouter un médicament</Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </>
     );
 }

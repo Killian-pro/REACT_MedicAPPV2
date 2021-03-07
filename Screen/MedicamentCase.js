@@ -25,7 +25,7 @@ function MedicamentCase({ navigation, tableau }) {
 
     useEffect(() => {
         db.transaction((tx) => {
-            tx.executeSql('SELECT * FROM table_medic M LEFT JOIN table_prise P ON M.medic_id = P.prise_medicid GROUP BY medic_id', [], (tx, results) => {
+            tx.executeSql('SELECT * FROM table_medic a LEFT JOIN (SELECT *,max(prise_id) from table_prise GROUP by  prise_medicid ) b on a.medic_id= b.prise_medicid', [], (tx, results) => {
                 var temp = [];
                 for (let i = 0; i < results.rows.length; ++i)
                     temp.push(results.rows.item(i));

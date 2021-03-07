@@ -14,6 +14,7 @@ var db = openDatabase({
 function Add({ navigation }) {
     const [titre, SetTitre] = useState('');
     const [heure, SetHeure] = useState('');
+    let newDate = new Date().getFullYear()
 
     const ajouterUnMedicament= () => {
         if (titre === '') {
@@ -44,6 +45,11 @@ function Add({ navigation }) {
                         navigation.navigate('Home')
                     } else alert('Non enregistré');
                 },
+            );
+        });
+        db.transaction(function (tx) {
+            tx.executeSql('INSERT INTO table_prise (prise_annee) VALUES (?)', [newDate], (tx, results) => {
+            },
             );
         });
     }
