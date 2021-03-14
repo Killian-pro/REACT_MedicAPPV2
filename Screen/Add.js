@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { useState, useEffect } from 'react'
-import { View, Text, TextInput, Alert, } from 'react-native';
+import { View, Text, TextInput, Alert,ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { openDatabase } from 'react-native-sqlite-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -14,6 +14,7 @@ var db = openDatabase({
 function Add({ navigation }) {
     const [titre, SetTitre] = useState('');
     const [heure, SetHeure] = useState('');
+    const [description, setDescription] = useState('');
     let newDate = new Date().getFullYear()
 
     const ajouterUnMedicament= () => {
@@ -47,11 +48,6 @@ function Add({ navigation }) {
                 },
             );
         });
-        db.transaction(function (tx) {
-            tx.executeSql('INSERT INTO table_prise (prise_annee) VALUES (?)', [newDate], (tx, results) => {
-            },
-            );
-        });
     }
     return (
         <>
@@ -71,6 +67,13 @@ function Add({ navigation }) {
                     keyboardType='numeric'
                     onChangeText={heure => SetHeure(heure)}
                     value={heure}
+                />
+                 <TextInput
+                    style={{ height: 'auto',maxHeight:200, borderColor: 'gray', borderWidth: 1, borderRadius: 10, width: '80%', textAlign: 'center', marginBottom: 10,marginTop:30 }}
+                    placeholder='Description du médicament'
+                    onChangeText={description => setDescription(description)}
+                    multiline={true}
+                    value={description}
                 />
                 <TouchableOpacity onPress={() => ajouterUnMedicament()} style={{ marginTop: '50%', borderWidth: 2, borderRadius: 10, width: 100, alignItems: 'center', backgroundColor: '#00804F' }}>
                     <Text style={{ fontSize: 20, color: 'white' }}>Valider</Text>
