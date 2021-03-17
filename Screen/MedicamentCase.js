@@ -86,7 +86,7 @@ function MedicamentCase({ navigation, tableau }) {
         tableauDeMedicament.push(
             <TouchableOpacity onLongPress={() => { navigation.navigate('Calendar', { titre: tableauMedic[index].medic_name, id: tableauMedic[index].medic_id }) }} onPress={() => { verifDernierePrise(tableauMedic[index].medic_id, index) }} >
                 <View style={{ borderWidth: 2, borderRadius: 20, height: 100, width: 100, alignItems: 'center', justifyContent: 'center', margin: 5 }}>
-                    <Text style={{ fontSize: 15 }}>{tableauMedic[index].medic_name}</Text>
+                    <Text style={{ fontSize: 15 ,textAlign:'center' }}>{tableauMedic[index].medic_name}</Text>
                     <Text style={{ fontSize: 15 }}>{RetourneDernierePrise(index)}</Text>
                 </View>
             </TouchableOpacity>
